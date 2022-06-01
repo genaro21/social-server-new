@@ -6,18 +6,22 @@ const signIn = (req, res) => {
 };
 const signUp = async (req, res) => {
   try {
-    const { file, email, password } = req.body;
+    const { email, password } = req.body;
+    const file = req.file;
+    console.log({ file });
 
-    const hash = await utils.bcrypt.encrypt(password);
+    return res.json({ msg: 'user created' });
 
-    const user = {
-      avatar: 'avatar',
-      email,
-      password: hash,
-    };
+    // const hash = await utils.bcrypt.encrypt(password);
 
-    const data = await models.user.create(user);
-    return res.status(201).json({ data });
+    // const user = {
+    //   avatar: 'avatar',
+    //   email,
+    //   password: hash,
+    // };
+
+    // const data = await models.user.create(user);
+    // return res.status(201).json({ data });
   } catch (err) {
     return res.json(err);
   }
